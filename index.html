@@ -999,7 +999,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                         <img src="https://desafiosecar.site/images/antesedepois4" alt="Depois 2" class="transformation-image">
                         <div class="transformation-label">Em 27 dias</div>
                     </div>
-
                 </div>
 
                 <!-- Conversão de Coins -->
@@ -1197,31 +1196,40 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 updateProgress();
 
 // === AVANÇO AUTOMÁTICO DA TELA 20 ===
-// Detecta quando a tela 20 ("Analisando respostas") fica ativa
-// e avança automaticamente para a tela 21 após 2 segundos
+let advancedFrom20 = false; // impede duplo avanço
+
 const observer = new MutationObserver(() => {
   const screen20 = document.querySelector('.screen.active[data-screen="20"]');
-  if (screen20) {
-    // Mostra a tela 20 por 2 segundos e avança
+  if (screen20 && !advancedFrom20) {
+    advancedFrom20 = true; // trava para não executar de novo
+
+    // Mantém a tela 20 por 3,5 segundos
     setTimeout(() => {
-      nextScreen();
-      observer.disconnect(); // desativa o observador após o uso
-    }, 2000);
+      const nextScreenElement = document.querySelector('[data-screen="21"]');
+      if (nextScreenElement) {
+        nextScreen();
+        updateProgress();
+      } else {
+        console.error("⚠️ Tela 21 não encontrada. Verifique fechamento das divs anteriores.");
+      }
+      observer.disconnect(); // desativa o observador
+    }, 3500);
   }
 });
 
-// Ativa o observador para monitorar as trocas de tela
 observer.observe(document.body, {
   attributes: true,
   subtree: true,
   childList: true,
 });
 
+
     </script>
 </body>
 
 <!-- Mirrored from desafiosecar.site/calistenia/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 01:13:05 GMT -->
 </html>
+
 
 
 
