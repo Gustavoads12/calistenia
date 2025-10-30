@@ -607,6 +607,17 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   margin-bottom: 0;
 }
 
+      /* Espaçamento padrão da barra */
+.progress-container {
+  padding: 0 20px 20px;
+  transition: all 0.3s ease;
+}
+
+/* Ajuste automático quando for tela 20 ou 21 */
+body.final-phase .progress-container {
+  padding-bottom: 5px !important; /* reduz o espaço */
+}
+
       
     </style>
 </head>
@@ -1278,6 +1289,26 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
 // Inicializar
 updateProgress();
 
+// Detecta quando estamos nas telas finais (20 e 21)
+const screensObserver = new MutationObserver(() => {
+  const activeScreen = document.querySelector('.screen.active');
+  if (!activeScreen) return;
+
+  const screenNum = parseInt(activeScreen.getAttribute('data-screen'), 10);
+  if (screenNum >= 20) {
+    document.body.classList.add('final-phase');
+  } else {
+    document.body.classList.remove('final-phase');
+  }
+});
+
+screensObserver.observe(document.body, {
+  attributes: true,
+  subtree: true,
+  childList: true,
+});
+
+      
 // === AVANÇO AUTOMÁTICO DA TELA 20 ===
 let advancedFrom20 = false; // impede duplo avanço
 
@@ -1312,6 +1343,7 @@ observer.observe(document.body, {
 
 <!-- Mirrored from desafiosecar.site/calistenia/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 01:13:05 GMT -->
 </html>
+
 
 
 
