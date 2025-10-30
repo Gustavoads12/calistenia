@@ -833,23 +833,19 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                 Quantas horas você <span class="highlight">dorme</span> por noite?
             </h2>
             <div class="options">
-                <div class="option" onclick="selectOption(this, 20, 7, false)">
+                <div class="option" onclick="selectOption(this, 20, 7, true">
                     Menos de 5 horas
                 </div>
-                <div class="option" onclick="selectOption(this, 20, 7, false)">
+                <div class="option" onclick="selectOption(this, 20, 7, true)">
                     5-6 horas
                 </div>
-                <div class="option" onclick="selectOption(this, 20, 7, false)">
+                <div class="option" onclick="selectOption(this, 20, 7, true)">
                     7-8 horas
                 </div>
-                <div class="option" onclick="selectOption(this, 20, 7, false)">
+                <div class="option" onclick="selectOption(this, 20, 7, true)">
                     Mais de 8 horas
                 </div>
                   <img src="https://desafiosecar.site/images/tela20" alt="Atletas" class="credibility-image">
-
-            </div>
-            <button class="continue-btn" onclick="nextScreen()" disabled id="btn-20">Continuar</button>
-        </div>
 
 
         <!-- Tela 15: Pratica outros esportes? -->
@@ -904,22 +900,18 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                 O que mais <span class="highlight">te impede</span> de ter o corpo que deseja?
             </h2>
             <div class="options">
-                <div class="option" onclick="selectOption(this, 30, 7, false)">
+                <div class="option" onclick="selectOption(this, 30, 7, true)">
                     Falta de conhecimento
                 </div>
-                <div class="option" onclick="selectOption(this, 30, 7, false)">
+                <div class="option" onclick="selectOption(this, 30, 7, true)">
                     Falta de disciplina
                 </div>
-                <div class="option" onclick="selectOption(this, 30, 7, false)">
+                <div class="option" onclick="selectOption(this, 30, 7, true)">
                     Falta de tempo
                 </div>
-                <div class="option" onclick="selectOption(this, 30, 7, false)">
+                <div class="option" onclick="selectOption(this, 30, 7, true)">
                     Falta de resultados anteriores
                 </div>
-            </div>
-            <button class="continue-btn" onclick="nextScreen()" disabled id="btn-30">Continuar</button>
-        </div>
-
 
         <!-- Tela 18: Prefere vídeos ou textos? -->
         <div class="screen" data-screen="18">
@@ -946,34 +938,32 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
                 Qual é o seu <span class="highlight">nível de comprometimento</span> para mudar?
             </h2>
             <div class="options">
-                <div class="option" onclick="selectOption(this, 40, 8, false)">
+                <div class="option" onclick="selectOption(this, 40, 8, true)">
                     100% comprometido
                 </div>
-                <div class="option" onclick="selectOption(this, 40, 8, false)">
+                <div class="option" onclick="selectOption(this, 40, 8, true)">
                     Muito comprometido
                 </div>
-                <div class="option" onclick="selectOption(this, 40, 8, false)">
+                <div class="option" onclick="selectOption(this, 40, 8, true)">
                     Moderadamente comprometido
                 </div>
-            </div>
-            <button class="continue-btn" onclick="nextScreen()" disabled id="btn-40">Continuar</button>
-        </div>
 
-        <!-- Tela 20: Analisando respostas -->
-        <div class="screen" data-screen="20">
-            <div class="credibility-content">
-                <h2 class="screen-title">
-                    <span class="highlight">Analisando</span> suas respostas...
-                </h2>
-                <p class="credibility-subtitle">
-                    Estamos criando seu plano personalizado
-                </p>
-                <img src="https://desafiosecar.site/images/tela11" alt="Análise" class="credibility-image">
-
-            </div>
-
-            <button class="continue-btn" onclick="nextScreen()">Ver Meu Plano</button>
-        </div>
+       <!-- Tela 20: Analisando respostas -->
+<div class="screen" data-screen="20">
+  <div class="credibility-content">
+    <div class="loading-dots">
+  <span>.</span><span>.</span><span>.</span>
+</div>
+    
+    <h2 class="screen-title">
+      <span class="highlight">Analisando</span> suas respostas...
+    </h2>
+    <p class="credibility-subtitle">
+      Estamos criando seu plano personalizado
+    </p>
+    <img src="https://desafiosecar.site/images/tela11" alt="Análise" class="credibility-image">
+  </div>
+</div>
 
         <!-- Tela 21: TELA FINAL PREMIUM -->
         <div class="screen" data-screen="21">
@@ -1199,13 +1189,36 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             }
         }
 
-        // Inicializar
-        updateProgress();
+// Inicializar
+updateProgress();
+
+// === AVANÇO AUTOMÁTICO DA TELA 20 ===
+// Detecta quando a tela 20 ("Analisando respostas") fica ativa
+// e avança automaticamente para a tela 21 após 2 segundos
+const observer = new MutationObserver(() => {
+  const screen20 = document.querySelector('.screen.active[data-screen="20"]');
+  if (screen20) {
+    // Mostra a tela 20 por 2 segundos e avança
+    setTimeout(() => {
+      nextScreen();
+      observer.disconnect(); // desativa o observador após o uso
+    }, 2000);
+  }
+});
+
+// Ativa o observador para monitorar as trocas de tela
+observer.observe(document.body, {
+  attributes: true,
+  subtree: true,
+  childList: true,
+});
+
     </script>
 </body>
 
 <!-- Mirrored from desafiosecar.site/calistenia/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 01:13:05 GMT -->
 </html>
+
 
 
 
