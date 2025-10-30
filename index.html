@@ -92,31 +92,17 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             font-weight: bold;
             color: #3b82f6;
         }
-
-      /* Ajuste do posicionamento da moeda na barra de progresso */
-.coins-display {
-  position: absolute;
-  top: -10px; /* move a moeda ligeiramente pra cima */
-  right: 20px;
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  color: #3b82f6;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Se ainda ficar colado, pode subir mais: top: -14px; */
-
-      
+  
         /* Progress Bar */
         .progress-container {
             padding: 0 20px 20px;
         }
+
+      .progress-container {
+  padding: 0 20px 20px;
+  margin-top: 10px; /* 👈 adiciona um pequeno espaçamento abaixo da moeda */
+}
+
 
         .progress-bar {
             width: 100%;
@@ -1319,6 +1305,7 @@ observer.observe(document.body, {
 
 <!-- Mirrored from desafiosecar.site/calistenia/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 01:13:05 GMT -->
 </html>
+
 
 
 
