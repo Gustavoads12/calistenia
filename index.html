@@ -600,6 +600,13 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   }
 }
 
+      /* Remove o espaço extra da barra nas telas 20 e 21 */
+.screen[data-screen="20"] .progress-container,
+.screen[data-screen="21"] .progress-container {
+  padding-bottom: 5px; /* reduz o buraco */
+  margin-bottom: 0;
+}
+
       
     </style>
 </head>
@@ -1305,6 +1312,7 @@ observer.observe(document.body, {
 
 <!-- Mirrored from desafiosecar.site/calistenia/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Oct 2025 01:13:05 GMT -->
 </html>
+
 
 
 
